@@ -8,6 +8,9 @@ interface TipWindowProps {
 }
 
 export const TipWindow: React.FC<TipWindowProps> = ({ data, dimensions }) => {
+  // Split text by newline to render as separate HTML paragraphs
+  const lines = data.text.split('\n');
+
   return (
     <div
       className="absolute flex flex-col shadow-2xl rounded-xl overflow-hidden select-none transition-opacity duration-500 animate-in fade-in zoom-in-95"
@@ -39,12 +42,21 @@ export const TipWindow: React.FC<TipWindowProps> = ({ data, dimensions }) => {
 
       {/* Content Area */}
       <div 
-        className="flex-1 flex items-center justify-center p-5 relative"
+        className="flex-1 flex flex-col items-center justify-center p-5 relative text-center"
         style={{ backgroundColor: data.color }}
       >
-        <span className="font-sans text-gray-800 font-medium text-base leading-relaxed whitespace-pre-wrap text-center drop-shadow-sm">
-          {data.text}
-        </span>
+        {lines.map((line, index) => (
+          <p 
+            key={index} 
+            className={`font-sans text-gray-800 leading-snug ${
+              index === 0 && lines.length > 1 
+                ? 'font-bold text-lg mb-2' 
+                : 'font-medium text-sm text-gray-700'
+            }`}
+          >
+            {line}
+          </p>
+        ))}
       </div>
     </div>
   );
