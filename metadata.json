@@ -1,0 +1,5 @@
+{
+  "name": "Warm Tips Overflow",
+  "description": "A React recreation of a Python Tkinter script that floods the screen with caring messages, enhanced with Gemini API to generate unlimited unique warm wishes.",
+  "requestFramePermissions": []
+}
